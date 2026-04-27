@@ -1,337 +1,852 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ayu Asriani Tanjung – Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --navy: #0d1b2a;
-    --teal: #1d9e75;
-    --teal-light: #e1f5ee;
-    --cream: #faf8f3;
-    --gold: #c9972b;
-    --text: #1a1a1a;
-    --muted: #5a5a5a;
-    --border: rgba(0,0,0,0.08);
-    --card-bg: #ffffff;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); line-height: 1.6; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(250,248,243,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 60px;
-  }
-  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { font-size: 0.85rem; color: var(--muted); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--teal); }
-  .nav-toggle { display: none; font-size: 1.4rem; cursor: pointer; background: none; border: none; color: var(--navy); }
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --surface2: #17171f;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --accent: #7c6ef5;
+  --accent2: #a594f9;
+  --accent3: #c9b8ff;
+  --lime: #b8f566;
+  --text: #f0eeff;
+  --muted: rgba(240,238,255,0.45);
+  --muted2: rgba(240,238,255,0.25);
+  --card: rgba(255,255,255,0.035);
+  --glow: rgba(124,110,245,0.18);
+}
 
-  /* ── HERO ── */
-  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 60px; }
-  .hero-left {
-    background: var(--navy);
-    padding: 5rem 4rem;
-    display: flex; flex-direction: column; justify-content: center;
-    position: relative; overflow: hidden;
-  }
-  .hero-left::before {
-    content: ''; position: absolute; top: -80px; right: -80px;
-    width: 300px; height: 300px; border-radius: 50%;
-    border: 60px solid rgba(29,158,117,0.12);
-  }
-  .hero-left::after {
-    content: ''; position: absolute; bottom: -40px; left: -40px;
-    width: 180px; height: 180px; border-radius: 50%;
-    border: 40px solid rgba(201,151,43,0.1);
-  }
-  .hero-tag { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
-  .hero-tag::before { content: ''; display: block; width: 32px; height: 1px; background: var(--teal); }
-  .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); color: #fff; line-height: 1.15; margin-bottom: 1rem; }
-  .hero-name span { color: var(--gold); font-style: italic; }
-  .hero-title { font-size: 0.95rem; color: rgba(255,255,255,0.55); margin-bottom: 2rem; font-weight: 300; letter-spacing: 0.05em; }
-  .hero-desc { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.8; max-width: 400px; margin-bottom: 2.5rem; border-left: 2px solid var(--teal); padding-left: 1rem; }
-  .hero-cta { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--teal); color: #fff; padding: 0.75rem 1.75rem; border-radius: 2px; text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: background 0.2s; }
-  .hero-cta:hover { background: #16805f; }
-  .hero-right { background: var(--cream); padding: 5rem 3rem; display: flex; flex-direction: column; justify-content: center; }
-  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem; }
-  .stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; }
-  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--navy); line-height: 1; }
-  .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 0.4rem; text-transform: uppercase; letter-spacing: 0.08em; }
-  .contact-list { display: flex; flex-direction: column; gap: 0.75rem; }
-  .contact-item { display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; color: var(--muted); }
-  .contact-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
-  .contact-item a { color: var(--teal); text-decoration: none; }
+html { scroll-behavior: smooth; }
 
-  /* ── SECTION BASE ── */
-  section { padding: 5rem 0; }
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-  .section-header { margin-bottom: 3rem; }
-  .section-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
-  .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--teal); }
-  .section-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--navy); }
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
 
-  /* ── SKILLS ── */
-  #skills { background: var(--navy); }
-  #skills .section-title { color: #fff; }
-  #skills .section-label { color: var(--gold); }
-  #skills .section-label::before { background: var(--gold); }
-  .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.25rem; }
-  .skill-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 1.25rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem; transition: background 0.2s, border-color 0.2s; }
-  .skill-card:hover { background: rgba(29,158,117,0.12); border-color: rgba(29,158,117,0.3); }
-  .skill-icon { font-size: 1.2rem; margin-top: 2px; }
-  .skill-name { font-size: 0.9rem; color: rgba(255,255,255,0.85); font-weight: 400; }
-  .skill-sub { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
+/* ─── NOISE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: 0.4;
+}
 
-  /* ── EXPERIENCE ── */
-  #experience { background: var(--cream); }
-  .exp-timeline { position: relative; padding-left: 0; }
-  .exp-timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px; background: var(--border); }
-  .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 2.5rem; margin-bottom: 3rem; position: relative; }
-  .exp-item::before { content: ''; position: absolute; left: -4px; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
-  .exp-meta { padding-left: 1.5rem; }
-  .exp-period { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
-  .exp-company { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--navy); }
-  .exp-project { font-size: 0.8rem; color: var(--teal); margin-top: 0.25rem; }
-  .exp-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem 2rem; }
-  .exp-role { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.5rem; }
-  .exp-roletitle { font-size: 1.1rem; font-weight: 500; color: var(--navy); margin-bottom: 1rem; }
-  .exp-tasks { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
-  .exp-tasks li { font-size: 0.875rem; color: var(--muted); display: flex; align-items: baseline; gap: 0.6rem; }
-  .exp-tasks li::before { content: '→'; color: var(--teal); font-size: 0.75rem; flex-shrink: 0; }
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem;
+  background: rgba(10,10,15,0.85);
+  backdrop-filter: blur(20px) saturate(1.5);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
 
-  /* ── WEBSITES ── */
-  #websites { background: #f5f2eb; }
-  .web-list { display: flex; flex-direction: column; gap: 1.25rem; }
-  .web-row { background: #fff; border: 1px solid var(--border); border-radius: 10px; display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 1.25rem; padding: 1.25rem 1.5rem; transition: box-shadow 0.2s, transform 0.2s; }
-  .web-row:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.07); transform: translateY(-2px); }
-  .web-num { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; flex-shrink: 0; }
-  .web-num.c1 { background: #e8ecf0; color: var(--navy); }
-  .web-num.c2 { background: var(--teal-light); color: #0f6e56; }
-  .web-num.c3 { background: #fdf3df; color: #854f0b; }
-  .web-info { min-width: 0; }
-  .web-tag { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 0.25rem; }
-  .web-title { font-size: 1rem; font-weight: 500; color: var(--navy); margin-bottom: 0.3rem; }
-  .web-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.6rem; }
-  .pill-row { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-  .pill { font-size: 0.67rem; padding: 2px 10px; border-radius: 20px; letter-spacing: 0.04em; }
-  .pill.teal { background: var(--teal-light); color: #0f6e56; }
-  .pill.gold { background: #fdf3df; color: #854f0b; }
-  .pill.navy { background: #e8ecf0; color: var(--navy); }
-  .visit-btn { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--navy); color: #fff; padding: 0.5rem 1.1rem; border-radius: 6px; text-decoration: none; font-size: 0.78rem; font-weight: 500; white-space: nowrap; transition: background 0.2s; }
-  .visit-btn:hover { background: var(--teal); }
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+.nav-logo span { color: var(--accent2); }
 
-  /* ── POSTER / SOSMED ── */
-  #poster { background: var(--cream); }
-  .filter-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
-  .filter-btn { padding: 0.4rem 1rem; border-radius: 20px; border: 1px solid var(--border); background: #fff; font-size: 0.78rem; cursor: pointer; color: var(--muted); font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
-  .filter-btn.active, .filter-btn:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
-  .poster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; }
-  .poster-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
-  .poster-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.09); }
-  .poster-card.hidden { display: none; }
-  /* ============================================================
-     CARA MENAMBAH GAMBAR POSTER:
-     Ganti src="" di dalam .poster-img dengan path gambar kamu.
-     Contoh: src="images/poster1.jpg"
-     Letakkan folder images/ di direktori yang sama dengan file HTML ini.
-  ============================================================ */
-  .poster-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; background: #eee; }
-  .poster-placeholder { width: 100%; aspect-ratio: 1/1; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, #e8ecf0, #d3d1c7); color: var(--muted); font-size: 0.8rem; gap: 0.5rem; }
-  .poster-placeholder span { font-size: 2rem; }
-  .poster-body { padding: 1rem 1.25rem; }
-  .poster-cat { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 0.3rem; }
-  .poster-title { font-size: 0.92rem; font-weight: 500; color: var(--navy); margin-bottom: 0.25rem; }
-  .poster-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+.nav-center {
+  display: flex; gap: 0.25rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.3rem;
+}
 
-  /* ── EDUCATION ── */
-  #education { background: #f5f2eb; }
-  .edu-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 2rem; display: flex; gap: 2rem; align-items: flex-start; max-width: 700px; }
-  .edu-icon { width: 56px; height: 56px; border-radius: 50%; background: var(--teal-light); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
-  .edu-school { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 0.25rem; }
-  .edu-degree { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.25rem; }
-  .edu-period { font-size: 0.8rem; color: var(--muted); }
+.nav-link {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  transition: all 0.2s;
+  letter-spacing: 0.01em;
+}
+.nav-link:hover, .nav-link.active { background: var(--accent); color: #fff; }
 
-  /* ── FOOTER ── */
-  footer { background: var(--navy); padding: 3rem 2rem; text-align: center; }
-  .footer-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 0.5rem; }
-  .footer-sub { font-size: 0.82rem; color: rgba(255,255,255,0.4); margin-bottom: 1.5rem; }
-  .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
-  .footer-links a { font-size: 0.8rem; color: var(--teal); text-decoration: none; }
-  .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.25); margin-top: 1.5rem; }
+.nav-right { display: flex; align-items: center; gap: 0.75rem; }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-left { padding: 3rem 1.5rem; }
-    .hero-right { padding: 2.5rem 1.5rem; }
-    .nav-links { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--border); padding: 1rem 2rem; gap: 1rem; }
-    .nav-links.open { display: flex; }
-    .nav-toggle { display: block; }
-    .exp-item { grid-template-columns: 1fr; }
-    .exp-meta { padding-left: 1.5rem; }
-    .web-row { grid-template-columns: 48px 1fr; }
-    .web-row .visit-btn { display: none; }
-    .web-title a { color: var(--teal); }
-  }
+/* Language Toggle */
+.lang-toggle {
+  display: flex;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.2rem;
+  gap: 0;
+}
+.lang-btn {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  transition: all 0.2s;
+  letter-spacing: 0.08em;
+}
+.lang-btn.active { background: var(--accent); color: #fff; }
+
+.nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.3rem; cursor: pointer; }
+
+/* ─── HERO ─── */
+#home {
+  min-height: 100vh;
+  padding-top: 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.hero-bg-orb.o1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(124,110,245,0.2) 0%, transparent 70%);
+  top: -100px; left: -100px;
+}
+.hero-bg-orb.o2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(184,245,102,0.08) 0%, transparent 70%);
+  bottom: 0; right: 200px;
+}
+
+.hero-left {
+  padding: 5rem 4rem 5rem 4rem;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; z-index: 1;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--accent2);
+  margin-bottom: 1.75rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 28px; height: 1px;
+  background: linear-gradient(to right, var(--accent), transparent);
+}
+
+.hero-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(3rem, 5.5vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+.hero-name .accent-word {
+  background: linear-gradient(135deg, var(--accent2) 0%, var(--lime) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+
+.hero-roles {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.role-tag {
+  font-size: 0.75rem; font-weight: 500;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+}
+.role-tag:first-child { border-color: var(--accent); color: var(--accent3); }
+
+.hero-desc {
+  font-size: 0.92rem; font-weight: 300; color: var(--muted);
+  line-height: 1.85; max-width: 420px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-actions { display: flex; gap: 1rem; align-items: center; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--accent);
+  color: #fff; font-size: 0.83rem; font-weight: 500;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.25s;
+  letter-spacing: 0.02em;
+  box-shadow: 0 0 0 0 var(--glow);
+}
+.btn-primary:hover {
+  background: var(--accent2);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 30px var(--glow);
+}
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: var(--muted); font-size: 0.83rem;
+  text-decoration: none;
+  transition: color 0.2s;
+  padding: 0.7rem 0;
+}
+.btn-secondary:hover { color: var(--text); }
+
+.hero-right {
+  padding: 5rem 4rem 5rem 2rem;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; z-index: 1;
+}
+
+.stat-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin-bottom: 2.5rem;
+}
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.2s, background 0.2s;
+  position: relative; overflow: hidden;
+}
+.stat-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.stat-card:hover { border-color: var(--border2); background: rgba(124,110,245,0.06); }
+.stat-card:hover::before { opacity: 1; }
+
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.6rem; font-weight: 800;
+  line-height: 1;
+  color: var(--text);
+  letter-spacing: -0.03em;
+}
+.stat-num span { color: var(--accent2); }
+.stat-label { font-size: 0.72rem; color: var(--muted2); margin-top: 0.4rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+.contact-cards { display: flex; flex-direction: column; gap: 0.6rem; }
+.contact-row {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.7rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.85rem; color: var(--muted);
+  transition: border-color 0.2s, color 0.2s;
+}
+.contact-row a { color: inherit; text-decoration: none; }
+.contact-row:hover { border-color: var(--border2); color: var(--text); }
+.contact-row:hover a { color: var(--accent3); }
+.contact-icon { width: 28px; height: 28px; border-radius: 6px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+
+/* ─── SECTION BASE ─── */
+section { padding: 6rem 0; }
+.container { max-width: 1120px; margin: 0 auto; padding: 0 2.5rem; }
+.section-header { margin-bottom: 3.5rem; }
+.section-eyebrow {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--accent2);
+  display: flex; align-items: center; gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+.section-eyebrow::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); opacity: 0.4; }
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800; letter-spacing: -0.03em;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+/* ─── DIVIDER ─── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border2), transparent);
+  margin: 0;
+}
+
+/* ─── SKILLS ─── */
+#skills { background: var(--surface); }
+.skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+.skill-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem;
+  display: flex; align-items: flex-start; gap: 0.9rem;
+  transition: all 0.25s;
+  cursor: default;
+  position: relative; overflow: hidden;
+}
+.skill-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 0%, var(--glow), transparent 70%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.skill-card:hover::after { opacity: 1; }
+
+.skill-icon-wrap {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.skill-name { font-size: 0.875rem; font-weight: 500; color: var(--text); }
+.skill-sub { font-size: 0.72rem; color: var(--muted2); margin-top: 0.2rem; line-height: 1.4; }
+
+/* ─── EXPERIENCE ─── */
+#experience { background: var(--bg); }
+.exp-list { display: flex; flex-direction: column; gap: 0; }
+
+.exp-item {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.exp-item:last-child { border-bottom: none; }
+
+.exp-meta-wrap { padding-top: 0.25rem; }
+.exp-period {
+  font-size: 0.72rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted2);
+  margin-bottom: 0.6rem;
+}
+.exp-company-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--text); margin-bottom: 0.3rem;
+}
+.exp-badge {
+  display: inline-block;
+  font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--accent3);
+  margin-top: 0.4rem;
+}
+.exp-badge.current { background: rgba(124,110,245,0.12); border-color: var(--accent); }
+
+.exp-content { padding-top: 0.25rem; }
+.exp-role-label {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent2);
+  margin-bottom: 0.4rem;
+}
+.exp-role-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.3rem; font-weight: 700;
+  color: var(--text); letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+.exp-tasks { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.exp-tasks li {
+  display: flex; align-items: baseline; gap: 0.75rem;
+  font-size: 0.875rem; color: var(--muted); font-weight: 300;
+}
+.exp-tasks li::before {
+  content: '';
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+  margin-top: 0.45rem;
+}
+
+/* ─── WEBSITES ─── */
+#websites { background: var(--surface); }
+.web-list { display: flex; flex-direction: column; gap: 1.25rem; }
+.web-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 1.5rem; align-items: center;
+  transition: all 0.25s;
+  position: relative; overflow: hidden;
+}
+.web-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--accent), var(--lime));
+  opacity: 0; transition: opacity 0.3s;
+  border-radius: 3px 0 0 3px;
+}
+.web-card:hover { border-color: var(--border2); transform: translateX(4px); }
+.web-card:hover::before { opacity: 1; }
+
+.web-num-badge {
+  width: 48px; height: 48px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem; font-weight: 800;
+  flex-shrink: 0;
+}
+.web-num-badge.n1 { background: rgba(124,110,245,0.12); color: var(--accent3); border: 1px solid rgba(124,110,245,0.2); }
+.web-num-badge.n2 { background: rgba(184,245,102,0.08); color: var(--lime); border: 1px solid rgba(184,245,102,0.15); }
+.web-num-badge.n3 { background: rgba(255,200,100,0.08); color: #ffd27a; border: 1px solid rgba(255,200,100,0.15); }
+
+.web-tag-line { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.3rem; }
+.web-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
+.web-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.75rem; font-weight: 300; }
+
+.pill-row { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.pill {
+  font-size: 0.65rem; font-weight: 500; letter-spacing: 0.04em;
+  padding: 0.2rem 0.65rem; border-radius: 999px;
+}
+.pill.p1 { background: rgba(124,110,245,0.1); color: var(--accent3); border: 1px solid rgba(124,110,245,0.15); }
+.pill.p2 { background: rgba(184,245,102,0.06); color: var(--lime); border: 1px solid rgba(184,245,102,0.12); }
+.pill.p3 { background: rgba(255,255,255,0.04); color: var(--muted); border: 1px solid var(--border); }
+
+.visit-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.78rem; font-weight: 500;
+  color: var(--accent3); text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(124,110,245,0.3);
+  background: rgba(124,110,245,0.07);
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.visit-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ─── POSTER / SOSMED ─── */
+#poster { background: var(--bg); }
+.filter-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.filter-btn {
+  padding: 0.4rem 1rem; border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  font-size: 0.78rem; font-weight: 500;
+  cursor: pointer; color: var(--muted);
+  font-family: 'Instrument Sans', sans-serif;
+  transition: all 0.2s; letter-spacing: 0.02em;
+}
+.filter-btn.active, .filter-btn:hover {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+
+.poster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; }
+.poster-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+  transition: all 0.25s;
+}
+.poster-card:hover { transform: translateY(-4px); border-color: var(--border2); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+.poster-card.hidden { display: none; }
+.poster-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; background: var(--surface2); }
+.poster-placeholder {
+  width: 100%; aspect-ratio: 1/1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--surface2), var(--surface));
+  color: var(--muted2); font-size: 0.78rem; gap: 0.5rem;
+}
+.poster-placeholder span { font-size: 2rem; opacity: 0.5; }
+.poster-body { padding: 1rem 1.25rem; }
+.poster-cat { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2); margin-bottom: 0.3rem; font-weight: 600; }
+.poster-title { font-size: 0.9rem; font-weight: 500; color: var(--text); margin-bottom: 0.25rem; }
+.poster-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; font-weight: 300; }
+
+/* ─── EDUCATION ─── */
+#education { background: var(--surface); }
+.edu-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  display: flex; gap: 2rem; align-items: flex-start;
+  max-width: 680px;
+  position: relative; overflow: hidden;
+  transition: border-color 0.2s;
+}
+.edu-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--accent), var(--lime));
+}
+.edu-card:hover { border-color: var(--border2); }
+.edu-icon-wrap {
+  width: 64px; height: 64px; border-radius: 14px;
+  background: rgba(124,110,245,0.1);
+  border: 1px solid rgba(124,110,245,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; flex-shrink: 0;
+}
+.edu-school { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 0.35rem; }
+.edu-degree { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.4rem; font-weight: 300; }
+.edu-period {
+  display: inline-block;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em;
+  color: var(--accent2); text-transform: uppercase;
+  background: rgba(124,110,245,0.1);
+  padding: 0.2rem 0.6rem; border-radius: 4px;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+}
+.footer-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem; font-weight: 800;
+  color: var(--text); letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+.footer-sub { font-size: 0.82rem; color: var(--muted2); margin-bottom: 2rem; }
+.footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+.footer-links a {
+  font-size: 0.8rem; color: var(--muted);
+  text-decoration: none; transition: color 0.2s;
+  display: inline-flex; align-items: center; gap: 0.35rem;
+}
+.footer-links a:hover { color: var(--accent3); }
+.footer-copy { font-size: 0.7rem; color: var(--muted2); margin-top: 2rem; }
+
+/* ─── SCROLL ANIMATIONS ─── */
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.visible { opacity: 1; transform: none; }
+
+/* ─── MOBILE NAV ─── */
+@media (max-width: 768px) {
+  .nav-center { display: none; position: absolute; top: 64px; left: 0; right: 0; background: rgba(10,10,15,0.97); border-radius: 0; flex-direction: column; border: none; border-bottom: 1px solid var(--border); padding: 1rem; }
+  .nav-center.open { display: flex; }
+  .nav-toggle { display: block; }
+  .hero-bg-orb.o1 { width: 300px; height: 300px; }
+  #home { grid-template-columns: 1fr; }
+  .hero-left { padding: 3rem 1.5rem 2rem; }
+  .hero-right { padding: 0 1.5rem 3rem; }
+  .exp-item { grid-template-columns: 1fr; gap: 1rem; }
+  .web-card { grid-template-columns: 48px 1fr; }
+  .web-card .visit-btn { display: none; }
+  .web-title a { color: var(--accent3); }
+  nav { padding: 0 1.25rem; }
+  .container { padding: 0 1.25rem; }
+  .lang-toggle { display: none; }
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
-  <div class="nav-logo">Ayu Asriani Tanjung</div>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#websites">Websites</a></li>
-    <li><a href="#poster">Poster</a></li>
-    <li><a href="#education">Education</a></li>
+<nav id="mainNav">
+  <div class="nav-logo">Ayu<span>.</span></div>
+
+  <ul class="nav-center" id="navLinks">
+    <li><a class="nav-link" href="#home" data-en="Home" data-id="Beranda">Home</a></li>
+    <li><a class="nav-link" href="#skills" data-en="Skills" data-id="Keahlian">Skills</a></li>
+    <li><a class="nav-link" href="#experience" data-en="Experience" data-id="Pengalaman">Experience</a></li>
+    <li><a class="nav-link" href="#websites" data-en="Projects" data-id="Proyek">Projects</a></li>
+    <li><a class="nav-link" href="#poster" data-en="Creative" data-id="Kreatif">Creative</a></li>
+    <li><a class="nav-link" href="#education" data-en="Education" data-id="Pendidikan">Education</a></li>
   </ul>
-  <button class="nav-toggle" onclick="toggleNav()">☰</button>
+
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="id">ID</button>
+    </div>
+    <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-left">
-    <div class="hero-tag">Portfolio</div>
-    <h1 class="hero-name">Ayu <span>Asriani</span><br>Tanjung</h1>
-    <p class="hero-title">Software Quality Assurance · Web Developer · Content Creator</p>
-    <p class="hero-desc">
-      Motivated SQA professional dengan 4+ tahun pengalaman memastikan kualitas produk software tertinggi.
-      Skilled dalam functional testing, automation, bug lifecycle, web development, dan desain konten sosial media.
-    </p>
-    <a href="mailto:ayuasriani100@gmail.com" class="hero-cta">Hubungi Saya →</a>
-  </div>
-  <div class="hero-right">
-    <div class="stat-grid">
-      <div class="stat-card"><div class="stat-num">4+</div><div class="stat-label">Tahun Pengalaman</div></div>
-      <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Perusahaan</div></div>
-      <div class="stat-card"><div class="stat-num">15+</div><div class="stat-label">Tools & Teknologi</div></div>
-      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Bidang Keahlian</div></div>
+<section id="home">
+  <div class="hero-bg-orb o1"></div>
+  <div class="hero-bg-orb o2"></div>
+
+  <div class="hero-left fade-up">
+    <div class="hero-eyebrow" data-en="Portfolio · Open to Work" data-id="Portofolio · Terbuka untuk Peluang">Portfolio · Open to Work</div>
+    <h1 class="hero-name">
+      Ayu
+      <span class="accent-word">Asriani</span>
+      Tanjung
+    </h1>
+    <div class="hero-roles">
+      <span class="role-tag">Software QA</span>
+      <span class="role-tag">Web Developer</span>
+      <span class="role-tag">Content Creator</span>
     </div>
-    <div class="contact-list">
-      <div class="contact-item"><div class="contact-dot"></div>082274397953</div>
-      <div class="contact-item"><div class="contact-dot"></div><a href="mailto:ayuasriani100@gmail.com">ayuasriani100@gmail.com</a></div>
-      <div class="contact-item"><div class="contact-dot"></div>Kebon Jeruk, Jakarta Barat</div>
-      <div class="contact-item"><div class="contact-dot"></div><a href="https://www.linkedin.com/in/ayu-tanjung-6b4a1516b" target="_blank">LinkedIn Profile</a></div>
+    <p class="hero-desc" data-en="Motivated SQA professional with 4+ years of experience ensuring top software quality. Skilled in functional testing, automation, bug lifecycle management, web development, and social media content design." data-id="Profesional SQA yang berdedikasi dengan 4+ tahun pengalaman memastikan kualitas produk software terbaik. Ahli dalam functional testing, automation, bug lifecycle, web development, dan desain konten sosial media.">
+      Motivated SQA professional with 4+ years of experience ensuring top software quality. Skilled in functional testing, automation, bug lifecycle management, web development, and social media content design.
+    </p>
+    <div class="hero-actions">
+      <a href="mailto:ayuasriani100@gmail.com" class="btn-primary" data-en="Contact Me →" data-id="Hubungi Saya →">Contact Me →</a>
+      <a href="https://www.linkedin.com/in/ayu-tanjung-6b4a1516b" target="_blank" class="btn-secondary" data-en="↗ LinkedIn" data-id="↗ LinkedIn">↗ LinkedIn</a>
+    </div>
+  </div>
+
+  <div class="hero-right fade-up" style="transition-delay: 0.15s">
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-num">4<span>+</span></div>
+        <div class="stat-label" data-en="Years Experience" data-id="Tahun Pengalaman">Years Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4</div>
+        <div class="stat-label" data-en="Companies" data-id="Perusahaan">Companies</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">15<span>+</span></div>
+        <div class="stat-label" data-en="Tools & Tech" data-id="Tools & Teknologi">Tools & Tech</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label" data-en="Expertise Areas" data-id="Bidang Keahlian">Expertise Areas</div>
+      </div>
+    </div>
+    <div class="contact-cards">
+      <div class="contact-row">
+        <div class="contact-icon">📱</div>
+        082274397953
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">✉️</div>
+        <a href="mailto:ayuasriani100@gmail.com">ayuasriani100@gmail.com</a>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">📍</div>
+        <span data-en="Kebon Jeruk, West Jakarta" data-id="Kebon Jeruk, Jakarta Barat">Kebon Jeruk, West Jakarta</span>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">🔗</div>
+        <a href="https://www.linkedin.com/in/ayu-tanjung-6b4a1516b" target="_blank">LinkedIn Profile</a>
+      </div>
     </div>
   </div>
 </section>
+
+<div class="section-divider"></div>
 
 <!-- SKILLS -->
 <section id="skills">
   <div class="container">
-    <div class="section-header">
-      <div class="section-label">Core Competencies</div>
-      <h2 class="section-title" style="color:#fff">Skill &amp; Keahlian</h2>
+    <div class="section-header fade-up">
+      <div class="section-eyebrow" data-en="Core Competencies" data-id="Kompetensi Utama">Core Competencies</div>
+      <h2 class="section-title" data-en="Skills & Expertise" data-id="Skill & Keahlian">Skills & Expertise</h2>
     </div>
     <div class="skill-grid">
-      <div class="skill-card"><div class="skill-icon">🧪</div><div><div class="skill-name">Quality Testing</div><div class="skill-sub">UAT, Regression, Smoke, SIT</div></div></div>
-      <div class="skill-card"><div class="skill-icon">🐛</div><div><div class="skill-name">Bug Management</div><div class="skill-sub">JIRA, Phabricator</div></div></div>
-      <div class="skill-card"><div class="skill-icon">🤖</div><div><div class="skill-name">Test Automation</div><div class="skill-sub">Robot Framework, Katalon, Selenium</div></div></div>
-      <div class="skill-card"><div class="skill-icon">📮</div><div><div class="skill-name">API Testing</div><div class="skill-sub">Postman, endpoint validation</div></div></div>
-      <div class="skill-card"><div class="skill-icon">📋</div><div><div class="skill-name">Test Case Management</div><div class="skill-sub">TestRail, AIO Tests</div></div></div>
-      <div class="skill-card"><div class="skill-icon">🗄️</div><div><div class="skill-name">Database</div><div class="skill-sub">MySQL, Metabase</div></div></div>
-      <div class="skill-card"><div class="skill-icon">🔄</div><div><div class="skill-name">SDLC &amp; Agile</div><div class="skill-sub">Waterfall &amp; Scrum</div></div></div>
-      <div class="skill-card"><div class="skill-icon">🌐</div><div><div class="skill-name">Web Development</div><div class="skill-sub">HTML, CSS, JavaScript, Python/Django</div></div></div>
-      <div class="skill-card"><div class="skill-icon">🎨</div><div><div class="skill-name">Desain Poster</div><div class="skill-sub">Konten Visual Sosial Media</div></div></div>
-      <div class="skill-card"><div class="skill-icon">📊</div><div><div class="skill-name">Office Tools</div><div class="skill-sub">Word, Excel, PowerPoint</div></div></div>
-      <div class="skill-card"><div class="skill-icon">🗂️</div><div><div class="skill-name">Design System</div><div class="skill-sub">yEd diagram tool</div></div></div>
-      <div class="skill-card"><div class="skill-icon">💡</div><div><div class="skill-name">Analytical Thinking</div><div class="skill-sub">Root cause analysis</div></div></div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon-wrap">🧪</div>
+        <div>
+          <div class="skill-name" data-en="Quality Testing" data-id="Quality Testing">Quality Testing</div>
+          <div class="skill-sub">UAT, Regression, Smoke, SIT</div>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon-wrap">🐛</div>
+        <div>
+          <div class="skill-name" data-en="Bug Management" data-id="Manajemen Bug">Bug Management</div>
+          <div class="skill-sub">JIRA, Phabricator</div>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon-wrap">🤖</div>
+        <div>
+          <div class="skill-name" data-en="Test Automation" data-id="Test Automation">Test Automation</div>
+          <div class="skill-sub">Robot Framework, Katalon, Selenium</div>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon-wrap">📮</div>
+        <div>
+          <div class="skill-name" data-en="API Testing" data-id="API Testing">API Testing</div>
+          <div class="skill-sub">Postman, endpoint validation</div>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon-wrap">📋</div>
+        <div>
+          <div class="skill-name" data-en="Test Case Management" data-id="Manajemen Test Case">Test Case Management</div>
+          <div class="skill-sub">TestRail, AIO Tests</div>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon-wrap">🗄️</div>
+        <div>
+          <div class="skill-name" data-en="Database" data-id="Database">Database</div>
+          <div class="skill-sub">MySQL, Metabase</div>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon-wrap">🔄</div>
+        <div>
+          <div class="skill-name" data-en="SDLC & Agile" data-id="SDLC & Agile">SDLC & Agile</div>
+          <div class="skill-sub">Waterfall & Scrum</div>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon-wrap">🌐</div>
+        <div>
+          <div class="skill-name" data-en="Web Development" data-id="Web Development">Web Development</div>
+          <div class="skill-sub">HTML, CSS, JS, Python/Django</div>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon-wrap">🎨</div>
+        <div>
+          <div class="skill-name" data-en="Poster Design" data-id="Desain Poster">Poster Design</div>
+          <div class="skill-sub" data-en="Social Media Visual Content" data-id="Konten Visual Sosial Media">Social Media Visual Content</div>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon-wrap">📊</div>
+        <div>
+          <div class="skill-name" data-en="Office Tools" data-id="Office Tools">Office Tools</div>
+          <div class="skill-sub">Word, Excel, PowerPoint</div>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon-wrap">🗂️</div>
+        <div>
+          <div class="skill-name" data-en="Design System" data-id="Design System">Design System</div>
+          <div class="skill-sub">yEd diagram tool</div>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon-wrap">💡</div>
+        <div>
+          <div class="skill-name" data-en="Analytical Thinking" data-id="Analytical Thinking">Analytical Thinking</div>
+          <div class="skill-sub" data-en="Root cause analysis" data-id="Root cause analysis">Root cause analysis</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<div class="section-divider"></div>
 
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="container">
-    <div class="section-header">
-      <div class="section-label">Career Journey</div>
-      <h2 class="section-title">Pengalaman Kerja</h2>
+    <div class="section-header fade-up">
+      <div class="section-eyebrow" data-en="Career Journey" data-id="Perjalanan Karir">Career Journey</div>
+      <h2 class="section-title" data-en="Work Experience" data-id="Pengalaman Kerja">Work Experience</h2>
     </div>
-    <div class="exp-timeline">
+    <div class="exp-list">
 
-      <div class="exp-item">
-        <div class="exp-meta">
-          <div class="exp-period">Agu 2022 – Sekarang</div>
-          <div class="exp-company">Lion Parcel</div>
-          <div class="exp-project">Web Genesis</div>
+      <div class="exp-item fade-up">
+        <div class="exp-meta-wrap">
+          <div class="exp-period" data-en="Aug 2022 – Present" data-id="Agu 2022 – Sekarang">Aug 2022 – Present</div>
+          <div class="exp-company-name">Lion Parcel</div>
+          <div class="exp-badge current" data-en="Current · Web Genesis" data-id="Aktif · Web Genesis">Current · Web Genesis</div>
         </div>
         <div class="exp-content">
-          <div class="exp-role">Current Role</div>
-          <div class="exp-roletitle">Software Quality Assurance</div>
+          <div class="exp-role-label" data-en="Current Role" data-id="Jabatan Saat Ini">Current Role</div>
+          <div class="exp-role-title">Software Quality Assurance</div>
           <ul class="exp-tasks">
-            <li>Develop test cases menggunakan TestRail.io</li>
-            <li>Functional testing, validasi API endpoint &amp; database</li>
-            <li>Buat automated tests menggunakan Robot Framework</li>
-            <li>Regression, Smoke &amp; SIT testing</li>
-            <li>Kolaborasi dengan developer &amp; stakeholder</li>
-            <li>Kelola test data untuk berbagai skenario pengujian</li>
+            <li data-en="Develop test cases using TestRail.io" data-id="Buat test case menggunakan TestRail.io">Develop test cases using TestRail.io</li>
+            <li data-en="Functional testing, API endpoint & database validation" data-id="Functional testing, validasi API endpoint & database">Functional testing, API endpoint & database validation</li>
+            <li data-en="Build automated tests using Robot Framework" data-id="Buat automated tests menggunakan Robot Framework">Build automated tests using Robot Framework</li>
+            <li data-en="Regression, Smoke & SIT testing" data-id="Regression, Smoke & SIT testing">Regression, Smoke & SIT testing</li>
+            <li data-en="Collaborate with developers & stakeholders" data-id="Kolaborasi dengan developer & stakeholder">Collaborate with developers & stakeholders</li>
+            <li data-en="Manage test data for various test scenarios" data-id="Kelola test data untuk berbagai skenario pengujian">Manage test data for various test scenarios</li>
           </ul>
         </div>
       </div>
 
-      <div class="exp-item">
-        <div class="exp-meta">
-          <div class="exp-period">Okt 2021 – Jul 2022</div>
-          <div class="exp-company">SiCepat Ekspres</div>
-          <div class="exp-project">Project Billing</div>
+      <div class="exp-item fade-up">
+        <div class="exp-meta-wrap">
+          <div class="exp-period" data-en="Oct 2021 – Jul 2022" data-id="Okt 2021 – Jul 2022">Oct 2021 – Jul 2022</div>
+          <div class="exp-company-name">SiCepat Ekspres</div>
+          <div class="exp-badge" data-en="Project Billing" data-id="Project Billing">Project Billing</div>
         </div>
         <div class="exp-content">
-          <div class="exp-role">Previous Role</div>
-          <div class="exp-roletitle">Quality Assurance Analyst</div>
+          <div class="exp-role-label" data-en="Previous Role" data-id="Jabatan Sebelumnya">Previous Role</div>
+          <div class="exp-role-title">Quality Assurance Analyst</div>
           <ul class="exp-tasks">
-            <li>Buat test case menggunakan AIO Tests</li>
-            <li>Verifikasi requirement &amp; spesifikasi teknis</li>
-            <li>Functional testing &amp; validasi data via Postman</li>
-            <li>Analisa defect &amp; identifikasi root cause</li>
-            <li>Partisipasi dalam agile team</li>
+            <li data-en="Create test cases using AIO Tests" data-id="Buat test case menggunakan AIO Tests">Create test cases using AIO Tests</li>
+            <li data-en="Verify requirements & technical specifications" data-id="Verifikasi requirement & spesifikasi teknis">Verify requirements & technical specifications</li>
+            <li data-en="Functional testing & data validation via Postman" data-id="Functional testing & validasi data via Postman">Functional testing & data validation via Postman</li>
+            <li data-en="Defect analysis & root cause identification" data-id="Analisa defect & identifikasi root cause">Defect analysis & root cause identification</li>
+            <li data-en="Participate in agile team process" data-id="Partisipasi dalam agile team">Participate in agile team process</li>
           </ul>
         </div>
       </div>
 
-      <div class="exp-item">
-        <div class="exp-meta">
-          <div class="exp-period">Des 2020 – Agu 2021</div>
-          <div class="exp-company">Cermati</div>
-          <div class="exp-project">Blu by BCA Digital</div>
+      <div class="exp-item fade-up">
+        <div class="exp-meta-wrap">
+          <div class="exp-period" data-en="Dec 2020 – Aug 2021" data-id="Des 2020 – Agu 2021">Dec 2020 – Aug 2021</div>
+          <div class="exp-company-name">Cermati</div>
+          <div class="exp-badge" data-en="Blu by BCA Digital" data-id="Blu by BCA Digital">Blu by BCA Digital</div>
         </div>
         <div class="exp-content">
-          <div class="exp-role">Previous Role</div>
-          <div class="exp-roletitle">Software Quality Assurance</div>
+          <div class="exp-role-label" data-en="Previous Role" data-id="Jabatan Sebelumnya">Previous Role</div>
+          <div class="exp-role-title">Software Quality Assurance</div>
           <ul class="exp-tasks">
-            <li>Buat dan eksekusi test case</li>
-            <li>Functional testing (UAT, Regression, Sanity) – iOS</li>
-            <li>Reproduce &amp; log bug report</li>
-            <li>Follow-up issues dengan developer &amp; PM</li>
+            <li data-en="Create and execute test cases" data-id="Buat dan eksekusi test case">Create and execute test cases</li>
+            <li data-en="Functional testing (UAT, Regression, Sanity) – iOS" data-id="Functional testing (UAT, Regression, Sanity) – iOS">Functional testing (UAT, Regression, Sanity) – iOS</li>
+            <li data-en="Reproduce & log bug reports" data-id="Reproduce & log bug report">Reproduce & log bug reports</li>
+            <li data-en="Follow-up issues with developers & PM" data-id="Follow-up issues dengan developer & PM">Follow-up issues with developers & PM</li>
           </ul>
         </div>
       </div>
 
-      <div class="exp-item">
-        <div class="exp-meta">
-          <div class="exp-period">Nov 2019 – Nov 2020</div>
-          <div class="exp-company">PT Bank Mandiri</div>
-          <div class="exp-project">Kontrak</div>
+      <div class="exp-item fade-up">
+        <div class="exp-meta-wrap">
+          <div class="exp-period" data-en="Nov 2019 – Nov 2020" data-id="Nov 2019 – Nov 2020">Nov 2019 – Nov 2020</div>
+          <div class="exp-company-name">PT Bank Mandiri</div>
+          <div class="exp-badge" data-en="Contract" data-id="Kontrak">Contract</div>
         </div>
         <div class="exp-content">
-          <div class="exp-role">Previous Role</div>
-          <div class="exp-roletitle">Tester Quality Assurance</div>
+          <div class="exp-role-label" data-en="Previous Role" data-id="Jabatan Sebelumnya">Previous Role</div>
+          <div class="exp-role-title">Tester Quality Assurance</div>
           <ul class="exp-tasks">
-            <li>Responsible for SIT, UAT &amp; Regression testing</li>
-            <li>Buat test case &amp; bug tracking via JIRA</li>
-            <li>Buat laporan testing &amp; dokumentasi error</li>
+            <li data-en="Responsible for SIT, UAT & Regression testing" data-id="Bertanggung jawab atas SIT, UAT & Regression testing">Responsible for SIT, UAT & Regression testing</li>
+            <li data-en="Create test cases & bug tracking via JIRA" data-id="Buat test case & bug tracking via JIRA">Create test cases & bug tracking via JIRA</li>
+            <li data-en="Write testing reports & error documentation" data-id="Buat laporan testing & dokumentasi error">Write testing reports & error documentation</li>
           </ul>
         </div>
       </div>
@@ -339,129 +854,115 @@
     </div>
   </div>
 </section>
+
+<div class="section-divider"></div>
 
 <!-- WEBSITES -->
 <section id="websites">
   <div class="container">
-    <div class="section-header">
-      <div class="section-label">Live Projects</div>
-      <h2 class="section-title">Website yang Dibuat</h2>
+    <div class="section-header fade-up">
+      <div class="section-eyebrow" data-en="Live Projects" data-id="Proyek Live">Live Projects</div>
+      <h2 class="section-title" data-en="Websites Built" data-id="Website yang Dibuat">Websites Built</h2>
     </div>
     <div class="web-list">
 
-      <div class="web-row">
-        <div class="web-num c1">01</div>
+      <div class="web-card fade-up">
+        <div class="web-num-badge n1">01</div>
         <div class="web-info">
-          <div class="web-tag">Web App · Pemerintahan</div>
+          <div class="web-tag-line" data-en="Web App · Government" data-id="Web App · Pemerintahan">Web App · Government</div>
           <div class="web-title">TARA – Taksiran Biaya Perkara</div>
-          <div class="web-desc">Sistem kalkulasi estimasi biaya panjar perkara untuk Mahkamah Syar'iyah Blangkejeren. Mendukung berbagai jenis perkara seperti cerai gugat, isbat nikah, dispensasi kawin, dan lainnya.</div>
+          <div class="web-desc" data-en="Case cost estimation system for Mahkamah Syar'iyah Blangkejeren. Supports various case types including cerai gugat, isbat nikah, dispensasi kawin, and more." data-id="Sistem kalkulasi estimasi biaya panjar perkara untuk Mahkamah Syar'iyah Blangkejeren. Mendukung berbagai jenis perkara seperti cerai gugat, isbat nikah, dispensasi kawin, dan lainnya.">Case cost estimation system for Mahkamah Syar'iyah Blangkejeren. Supports various case types including cerai gugat, isbat nikah, dispensasi kawin, and more.</div>
           <div class="pill-row">
-            <span class="pill teal">Python / Django</span>
-            <span class="pill teal">Web App</span>
-            <span class="pill navy">Mahkamah Syar'iyah</span>
-            <span class="pill navy">Blangkejeren</span>
+            <span class="pill p1">Python / Django</span>
+            <span class="pill p1">Web App</span>
+            <span class="pill p3">Mahkamah Syar'iyah</span>
+            <span class="pill p3">Blangkejeren</span>
           </div>
         </div>
-        <a class="visit-btn" href="https://tara.ms-blangkejeren.go.id/" target="_blank">Kunjungi ↗</a>
+        <a class="visit-btn" href="https://tara.ms-blangkejeren.go.id/" target="_blank" data-en="Visit ↗" data-id="Kunjungi ↗">Visit ↗</a>
       </div>
 
-      <div class="web-row">
-        <div class="web-num c2">02</div>
+      <div class="web-card fade-up">
+        <div class="web-num-badge n2">02</div>
         <div class="web-info">
-          <div class="web-tag">Web App · Pemerintahan</div>
+          <div class="web-tag-line" data-en="Web App · Government" data-id="Web App · Pemerintahan">Web App · Government</div>
           <div class="web-title">SIASRI – Sistem Informasi Administrasi Surat Terintegrasi</div>
-          <div class="web-desc">Aplikasi manajemen administrasi surat terintegrasi untuk Mahkamah Syar'iyah Blangkejeren di bawah Direktorat Jenderal Badan Peradilan Agama, Mahkamah Agung RI.</div>
+          <div class="web-desc" data-en="Integrated letter administration management application for Mahkamah Syar'iyah Blangkejeren under the Directorate General of Religious Courts, Supreme Court of RI." data-id="Aplikasi manajemen administrasi surat terintegrasi untuk Mahkamah Syar'iyah Blangkejeren di bawah Direktorat Jenderal Badan Peradilan Agama, Mahkamah Agung RI.">Integrated letter administration management application for Mahkamah Syar'iyah Blangkejeren under the Directorate General of Religious Courts, Supreme Court of RI.</div>
           <div class="pill-row">
-            <span class="pill teal">Python / Django</span>
-            <span class="pill teal">Web App</span>
-            <span class="pill navy">Mahkamah Agung RI</span>
-            <span class="pill navy">Blangkejeren</span>
+            <span class="pill p2">Python / Django</span>
+            <span class="pill p2">Web App</span>
+            <span class="pill p3">Mahkamah Agung RI</span>
+            <span class="pill p3">Blangkejeren</span>
           </div>
         </div>
-        <a class="visit-btn" href="https://siasri.ms-blangkejeren.go.id/" target="_blank">Kunjungi ↗</a>
+        <a class="visit-btn" href="https://siasri.ms-blangkejeren.go.id/" target="_blank" data-en="Visit ↗" data-id="Kunjungi ↗">Visit ↗</a>
       </div>
 
-      <div class="web-row">
-        <div class="web-num c3">03</div>
+      <div class="web-card fade-up">
+        <div class="web-num-badge n3">03</div>
         <div class="web-info">
-          <div class="web-tag">Web App · Personal Finance</div>
+          <div class="web-tag-line" data-en="Web App · Personal Finance" data-id="Web App · Keuangan Pribadi">Web App · Personal Finance</div>
           <div class="web-title">Dompetku – Aplikasi Catat Keuangan</div>
-          <div class="web-desc">Aplikasi pencatatan dan pemantauan keuangan pribadi dengan fitur login Google, manajemen transaksi, dan laporan pengeluaran. Dibangun dengan Django dan di-host di PythonAnywhere.</div>
+          <div class="web-desc" data-en="Personal finance tracking app with Google login, transaction management, and expense reporting. Built with Django and hosted on PythonAnywhere." data-id="Aplikasi pencatatan dan pemantauan keuangan pribadi dengan fitur login Google, manajemen transaksi, dan laporan pengeluaran. Dibangun dengan Django dan di-host di PythonAnywhere.">Personal finance tracking app with Google login, transaction management, and expense reporting. Built with Django and hosted on PythonAnywhere.</div>
           <div class="pill-row">
-            <span class="pill gold">Python / Django</span>
-            <span class="pill gold">PythonAnywhere</span>
-            <span class="pill navy">Google OAuth</span>
-            <span class="pill navy">Personal Project</span>
+            <span class="pill p3">Python / Django</span>
+            <span class="pill p3">PythonAnywhere</span>
+            <span class="pill p3">Google OAuth</span>
+            <span class="pill p3">Personal Project</span>
           </div>
         </div>
-        <a class="visit-btn" href="https://ayutanjung98.pythonanywhere.com/" target="_blank">Kunjungi ↗</a>
+        <a class="visit-btn" href="https://ayutanjung98.pythonanywhere.com/" target="_blank" data-en="Visit ↗" data-id="Kunjungi ↗">Visit ↗</a>
       </div>
 
     </div>
   </div>
 </section>
 
+<div class="section-divider"></div>
+
 <!-- POSTER / SOSMED -->
-<!--
-  ============================================================
-  CARA MENAMBAH POSTER / GAMBAR SOSMED:
-  1. Buat folder bernama "images" di direktori yang sama dengan file ini
-  2. Masukkan semua gambar poster ke folder tersebut
-  3. Duplikat salah satu blok <div class="poster-card"> di bawah
-  4. Ubah:
-     - data-cat="..." → kategori: instagram / poster / template
-     - <img src="images/NAMA_FILE.jpg"> → ganti dengan nama file gambar kamu
-     - .poster-cat → nama kategori yang tampil
-     - .poster-title → judul poster
-     - .poster-desc → deskripsi singkat
-  ============================================================
--->
 <section id="poster">
   <div class="container">
-    <div class="section-header">
-      <div class="section-label">Creative Work</div>
-      <h2 class="section-title">Poster &amp; Sosial Media</h2>
+    <div class="section-header fade-up">
+      <div class="section-eyebrow" data-en="Creative Work" data-id="Karya Kreatif">Creative Work</div>
+      <h2 class="section-title" data-en="Poster & Social Media" data-id="Poster & Sosial Media">Poster & Social Media</h2>
     </div>
 
     <div class="filter-row">
-      <button class="filter-btn active" onclick="filterPoster('all', this)">Semua</button>
-      <button class="filter-btn" onclick="filterPoster('instagram', this)">Instagram</button>
-      <button class="filter-btn" onclick="filterPoster('poster', this)">Poster Event</button>
-      <button class="filter-btn" onclick="filterPoster('template', this)">Template</button>
+      <button class="filter-btn active" onclick="filterPoster('all', this)" data-en="All" data-id="Semua">All</button>
+      <button class="filter-btn" onclick="filterPoster('instagram', this)" data-en="Instagram" data-id="Instagram">Instagram</button>
+      <button class="filter-btn" onclick="filterPoster('poster', this)" data-en="Event Poster" data-id="Poster Event">Event Poster</button>
+      <button class="filter-btn" onclick="filterPoster('template', this)" data-en="Template" data-id="Template">Template</button>
     </div>
 
     <div class="poster-grid" id="posterGrid">
-
-      <!-- CONTOH KARTU DENGAN GAMBAR — ganti src dengan path gambarmu -->
-    
-      <div class="poster-card" data-cat="instagram">
-        <img class="poster-img" src="images/gambar1.jpg" alt="Poster 1">
+      <div class="poster-card fade-up" data-cat="instagram">
+        <img class="poster-img" src="images/gambar1.jpg" alt="Poster 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="poster-placeholder" style="display:none"><span>🖼️</span><span data-en="Add your image here" data-id="Tambahkan gambarmu di sini">Add your image here</span></div>
         <div class="poster-body">
-          <div class="poster-cat">Instagram</div>
-          <div class="poster-title">Judul Poster</div>
-          <div class="poster-desc">Deskripsi singkat poster ini.</div>
+          <div class="poster-cat" data-en="Instagram" data-id="Instagram">Instagram</div>
+          <div class="poster-title" data-en="Poster Title" data-id="Judul Poster">Poster Title</div>
+          <div class="poster-desc" data-en="Short description of this poster." data-id="Deskripsi singkat poster ini.">Short description of this poster.</div>
         </div>
       </div>
-    
-
-      
-
     </div>
   </div>
 </section>
+
+<div class="section-divider"></div>
 
 <!-- EDUCATION -->
 <section id="education">
   <div class="container">
-    <div class="section-header">
-      <div class="section-label">Academic Background</div>
-      <h2 class="section-title">Pendidikan</h2>
+    <div class="section-header fade-up">
+      <div class="section-eyebrow" data-en="Academic Background" data-id="Latar Belakang Akademik">Academic Background</div>
+      <h2 class="section-title" data-en="Education" data-id="Pendidikan">Education</h2>
     </div>
-    <div class="edu-card">
-      <div class="edu-icon">🎓</div>
+    <div class="edu-card fade-up">
+      <div class="edu-icon-wrap">🎓</div>
       <div>
         <div class="edu-school">Institut Teknologi Del</div>
-        <div class="edu-degree">D3 Teknik Komputer (Computer Engineering)</div>
+        <div class="edu-degree" data-en="D3 Computer Engineering" data-id="D3 Teknik Komputer (Computer Engineering)">D3 Computer Engineering</div>
         <div class="edu-period">2016 – 2019</div>
       </div>
     </div>
@@ -471,31 +972,107 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-name">Ayu Asriani Tanjung</div>
-  <div class="footer-sub">Software Quality Assurance · Web Developer · Content Creator</div>
+  <div class="footer-sub" data-en="Software Quality Assurance · Web Developer · Content Creator" data-id="Software Quality Assurance · Web Developer · Content Creator">Software Quality Assurance · Web Developer · Content Creator</div>
   <div class="footer-links">
-    <a href="mailto:ayuasriani100@gmail.com">ayuasriani100@gmail.com</a>
-    <a href="tel:082274397953">082274397953</a>
-    <a href="https://www.linkedin.com/in/ayu-tanjung-6b4a1516b" target="_blank">LinkedIn</a>
+    <a href="mailto:ayuasriani100@gmail.com">✉ ayuasriani100@gmail.com</a>
+    <a href="tel:082274397953">📱 082274397953</a>
+    <a href="https://www.linkedin.com/in/ayu-tanjung-6b4a1516b" target="_blank">🔗 LinkedIn</a>
   </div>
   <div class="footer-copy">© 2025 Ayu Asriani Tanjung. All rights reserved.</div>
 </footer>
 
 <script>
-  function toggleNav() {
-    document.getElementById('navLinks').classList.toggle('open');
-  }
+// ─── LANGUAGE SYSTEM ───
+let currentLang = 'en';
 
-  function filterPoster(cat, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.poster-card').forEach(card => {
-      if (cat === 'all' || card.dataset.cat === cat) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
+function setLang(lang) {
+  currentLang = lang;
+
+  // Toggle button states
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  // Update all elements with data-en / data-id attributes
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const text = el.getAttribute('data-' + lang);
+    if (text) {
+      // If it's a button (filter-btn), update its text content directly
+      if (el.children.length === 0) {
+        el.textContent = text;
       }
-    });
-  }
+    }
+  });
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
+
+// ─── SMOOTH SCROLL (same page) ───
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const offset = 72;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+      // Close mobile nav
+      document.getElementById('navLinks').classList.remove('open');
+    }
+  });
+});
+
+// ─── ACTIVE NAV HIGHLIGHT ───
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+function updateActiveNav() {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+// ─── SCROLL ANIMATIONS ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-up').forEach((el, i) => {
+  el.style.transitionDelay = (i % 6) * 0.07 + 's';
+  observer.observe(el);
+});
+
+// ─── POSTER FILTER ───
+function filterPoster(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.poster-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+// ─── MOBILE NAV ───
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// Initialize
+updateActiveNav();
 </script>
 </body>
 </html>
